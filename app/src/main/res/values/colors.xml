@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">@color/E61E5A</color>
+    <color name="colorPrimaryDark">@color/_979797</color>
+    <color name="colorAccent">@color/_03B7BC</color>
+
+    <color name="windowBg">#FFFFFF</color>
+
+    <!---->
+    <color name="switchThumbChecked">@color/white</color>
+    <color name="switchTrackChecked">@color/white</color>
+
+    <color name="switchThumbUnchecked">@color/white</color>
+    <color name="switchTrackUnchecked">@color/white</color>
+
+    <!---->
+    <color name="transparent">#00000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="whitish">#EBFFFFFF</color>
+    <color name="white10">#1AFFFFFF</color>
+    <color name="white30">#4DFFFFFF</color>
+    <color name="white40">#66FFFFFF</color>
+    <color name="white50">#80FFFFFF</color>
+
+    <color name="black">#000000</color>
+    <color name="black20">#33000000</color>
+    <color name="black30">#4D000000</color>
+    <color name="black40">#66000000</color>
+    <color name="black50">#80000000</color>
+    <color name="black60">#99000000</color>
+    <color name="black70">#B3000000</color>
+    <color name="black80">#CC000000</color>
+    <color name="black90">#E6000000</color>
+
+    <!---->
+    <color name="E01515">#E01515</color>
+    <color name="EBEBEB">#EBEBEB</color>
+
+    <!---->
+    <color name="E61E5A">#E61E5A</color>
+    <color name="_058B27">#058B27</color>
+
+    <color name="_03B7BC">#03B7BC</color>
+    <color name="CC282E">#CC282E</color>
+    <color name="_979797">#979797</color>
+    <color name="DBCDB3">#DBCDB3</color>
+
+    <color name="EEEEEE">#EEEEEE</color>
+    <color name="F6F6F6">#F6F6F6</color>
+    <color name="_515151">#515151</color>
+    <color name="_393939">#393939</color>
+    <color name="C4C4C4">#C4C4C4</color>
+    <color name="A4A4A4">#A4A4A4</color>
+    <color name="_767676">#767676</color>
+    <color name="DEDEDE">#DEDEDE</color>
+    <color name="B9B9B9">#B9B9B9</color>
+
+    <color name="AC0031">#AC0031</color>
+    <color name="_219653">#219653</color>
+
+    <color name="colorPrimary20">#33E61E5A</color>
+
+</resources>

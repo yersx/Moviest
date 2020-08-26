@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kz.moviest.app.data.models.network.Resource"/>
+        <import type="kz.moviest.app.data.models.network.Status"/>
+
+        <import type="kz.moviest.app.ui.movies.movie.MovieDetailViewModel"/>
+
+        <variable name="viewModel" type="MovieDetailViewModel"/>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibleGone="@{viewModel.status == Status.SUCCESS}">
+
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:adjustViewBounds="true"
+                app:bindIconUrl="@{viewModel.imageFieldText}"
+                tools:src="@drawable/ic_launcher_background"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/Font.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:text="@{viewModel.titleFieldText}"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_logo"
+                tools:text="tv_title" />
+
+            <TextView
+                android:id="@+id/tv_tagline"
+                style="@style/Font.Italic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:text="@{viewModel.taglineFieldText}"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:text="tv_title" />
+
+            <TextView
+                android:id="@+id/tv_overview"
+                style="@style/Font.Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:text="@{viewModel.overviewFieldText}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_tagline"
+                tools:text="tv_title" />
+
+            <TextView
+                android:id="@+id/tv_released"
+                style="@style/Font.Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@{@string/movie_released(viewModel.releaseDateFieldText)}"
+                android:textColor="@color/_515151"
+                android:textSize="@dimen/sp_14"
+                tools:text="Released: 25-08-1998"
+                app:layout_constraintStart_toStartOf="@+id/tv_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_overview" />
+
+            <TextView
+                android:id="@+id/tv_popularity"
+                style="@style/Font.Regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@{@string/movie_popularity(viewModel.popularityDateFieldText)}"
+                android:textColor="@color/_515151"
+                android:textSize="@dimen/sp_14"
+                tools:text="Popularity: 123"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/dp_14"
+                app:layout_constraintTop_toBottomOf="@+id/tv_overview" />
+
+            <TextView
+                android:id="@+id/tv_rating"
+                style="@style/Font.Regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:ellipsize="end"
+                android:text="@{@string/movie_vote(viewModel.voteAverageFieldText)}"
+                android:textColor="@color/_979797"
+                android:textSize="@dimen/sp_14"
+                tools:text="Rating: 25-08-1998"
+                app:layout_constraintStart_toStartOf="@+id/tv_released"
+                app:layout_constraintTop_toBottomOf="@+id/tv_released"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            layout="@layout/view_loading"
+            app:resource="@{(Resource) viewModel.resource}"
+            app:retryCallback="@{viewModel.retryCallback}"/>
+    </FrameLayout>
+</layout>

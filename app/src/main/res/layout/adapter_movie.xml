@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kz.moviest.app.data.models.movies.Movie" />
+
+        <import type="kz.moviest.app.ui_common.callbacks.RecyclerViewItemClickCallback" />
+
+        <variable
+            name="movie"
+            type="Movie" />
+
+        <variable
+            name="recyclerViewItemClickCallback"
+            type="RecyclerViewItemClickCallback" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/dp_8"
+        android:elevation="@dimen/dp_4"
+        android:background="@color/white"
+        android:layout_marginStart="@dimen/dp_12"
+        android:layout_marginEnd="@dimen/dp_12"
+        android:onClick="@{() -> recyclerViewItemClickCallback.onRecyclerViewItemClick(movie)}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:id="@+id/top_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_logo"
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:adjustViewBounds="true"
+                    app:bindIconUrl="@{movie.poster_path}"
+                    tools:src="@drawable/ic_launcher_background" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        style="@style/Font.Medium.Italic"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:layout_marginEnd="@dimen/dp_12"
+                        android:text="@{movie.title}"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_16"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="tv_title" />
+
+                    <TextView
+                        android:id="@+id/tv_released"
+                        style="@style/Font.Regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:text="@{@string/movie_released(movie.release_date)}"
+                        android:textColor="@color/_515151"
+                        android:textSize="@dimen/sp_14"
+                        tools:text="Released: 25-08-1998"
+                        app:layout_constraintStart_toStartOf="@+id/tv_title"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_overview" />
+
+                    <TextView
+                        android:id="@+id/tv_rating"
+                        style="@style/Font.Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:ellipsize="end"
+                        android:text="@{@string/movie_vote(movie.vote_average)}"
+                        android:textColor="@color/_979797"
+                        android:textSize="@dimen/sp_14"
+                        tools:text="Rating: 25-08-1998"
+                        app:layout_constraintStart_toStartOf="@+id/tv_released"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_released"/>
+
+
+                    <TextView
+                        android:id="@+id/tv_overview"
+                        style="@style/Font.Regular"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{movie.overview}"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textColor="@color/_393939"
+                        android:textSize="@dimen/sp_12"
+                        app:layout_constraintStart_toStartOf="@+id/tv_title"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="@dimen/dp_10"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title" android:layout_marginTop="@dimen/dp_12"
+                        tools:text="overview" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

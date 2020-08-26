@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kz.moviest.app.data.models.network.Status" />
+
+        <import type="kz.moviest.app.data.models.network.Resource" />
+
+        <variable
+            name="viewModel"
+            type="kz.moviest.app.ui.movies.MoviesViewModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/EEEEEE">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/F6F6F6"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:visibleGone="@{viewModel.status == Status.SUCCESS}">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:onRefreshListener="@{() -> viewModel.swipeToRefreshCallback.onSwipeToRefresh()}"
+                app:refreshing="@{viewModel.isRefreshing}">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="@dimen/dp_12"
+                    tools:itemCount="3"
+                    android:clipToPadding="false"
+                    tools:listitem="@layout/adapter_movie"/>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <include
+                android:id="@+id/include_list_empty"
+                layout="@layout/view_list_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:visible="@{viewModel.emptyFieldVisible}" />
+
+            <include
+                android:id="@+id/include_after_loading"
+                layout="@layout/view_loading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:resource="@{(Resource) viewModel.moviesAfterResource}"
+                app:retryCallback="@{viewModel.afterRetryCallback}" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            layout="@layout/view_loading"
+            app:resource="@{(Resource) viewModel.resource}"
+            app:retryCallback="@{viewModel.retryCallback}" />
+
+    </FrameLayout>
+</layout>

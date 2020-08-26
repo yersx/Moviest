@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kz.moviest.app.data.models.network.Resource" />
+
+        <import type="kz.moviest.app.data.models.network.Status" />
+
+        <import type="kz.moviest.app.ui_common.callbacks.RetryCallback" />
+
+        <variable
+            name="resource"
+            type="Resource" />
+
+        <variable
+            name="retryCallback"
+            type="RetryCallback" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dp_16"
+            app:visibleGone="@{resource.status == Status.LOADING}">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_16"
+            app:visibleGone="@{resource.status == Status.ERROR}">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_8"
+                android:text="@{resource.message}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16"
+                tools:text="@string/error_occurred" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="@{() -> retryCallback.onRetryClick()}"
+                android:text="@string/retry"
+                app:backgroundTint="@color/colorPrimary" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

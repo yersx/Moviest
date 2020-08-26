@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="field_mobile_number">Номер мобильного</string>
+
+    <string name="field_select_value">Выберите значение</string>
+
+    <string name="field_error_empty">Данное поле требует заполнения</string>
+
+    <string name="field_error_invalid_mobile_number">Введите корректный номер</string>
+    <string name="field_error_invalid_email">Введите корректную почту</string>
+
+    <string name="field_error_not_chosen">Ничего не выбрано</string>
+    <string name="field_error_refresh">Не удалось обновить</string>
+
+</resources>

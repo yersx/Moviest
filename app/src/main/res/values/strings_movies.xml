@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="movie_released">Released: %s</string>
+    <string name="movie_vote">Rating: %s/10</string>
+    <string name="movie_popularity">Popularity: %s/10</string>
+    <string name="movie_voting">Rating:</string>
+    <string name="movie_until_year">Until year:</string>
+
+    <string name="movies_filter_title">Filter</string>
+    <string name="movies_filter_apply">Apply</string>
+</resources>
